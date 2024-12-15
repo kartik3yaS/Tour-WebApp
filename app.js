@@ -1,3 +1,4 @@
+const compression = require('compression');
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
@@ -65,10 +66,12 @@ app.use(
   })
 );
 
+app.use(compression());
+
 // Test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-  console.log(req.cookies);
+  // console.log(req.cookies);
   next();
 });
 
